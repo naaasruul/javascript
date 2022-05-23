@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=h1, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>DOM Manipulation</h1>
+    <input type="text" placeholder="Enter your name" id="name" required>
+    <input type="number" placeholder="Enter your age" id="age" required>
+    <button onClick="buttonClicked()">Click Me!</button>
+    <p id="message"></p>
+    <hr>
+    <h2>attribute manipulation</h2>
+    <button onClick="sayHello()" id="firstButton">Click Me!</button>
+    <button onClick="activateButton()"  id="secondButton">Activate Button</button>
+<hr>
+<h2>TO do list</h2>
+<input type="text" name="" id="newItem" Placeholder="enter item name">
+<button onClick="itemPress()">Add new item</button>
+<ul id="itemList">
+    
+</ul>
+<hr>
+<h2>Senarai pekerja</h2>
+<input type="text" Placeholder="nama pekerja" id="namaPekerja">
+<input type="email" Placeholder="email pekerja" id="emailPekerja">
+<input type="number" Placeholder="no tel pekerja"id="noTelPekerja">
+<button onClick="tambahPekerja()">Tambah pekerja</button>
+
+<table>
+    <thead>
+        <th>nama pekerja</th>
+        <th>email</th>
+        <th>no Tel</th>
+    </thead>
+     <tbody id="senaraiPekerja">    
+        
+    </tbody>
+  </table>
+
+
+
+<!---------------------------------- javaArea ----------------------------------------->
+    <script type="text/javascript">
+
+        function tambahPekerja(){
+            // create td x 3
+            var newName = document.createElement("td");
+            var newEmail = document.createElement("td");
+            var newNoTel = document.createElement("td");
+
+            // add text in td x 3
+            newName.innerHTML = document.getElementById("namaPekerja").value;
+            newEmail.innerHTML = document.getElementById("emailPekerja").value;
+            newNoTel.innerHTML = document.getElementById("noTelPekerja").value;
+
+            // create tr x 1
+            var trow = document.createElement("tr");
+
+            // masukkan td ke tr x 3 *appendChild = DIMASUKKAN*
+           trow.appendChild(newName);
+            trow.appendChild(newEmail);
+            trow.appendChild(newNoTel);
+
+            // tr ke tbody x 1
+            document.getElementById("senaraiPekerja").appendChild(trow);
+
+            // kosongkn input 
+            document.getElementById("namaPekerja").value = ""
+            document.getElementById("emailPekerja").value = ""
+            document.getElementById("noTelPekerja").value = ""
+            
+        }
+// -----------------------------------------------------------------------------
+        function itemPress(){
+            // create li
+            var newLi = document.createElement("li");
+            // add text
+            newLi.innerHTML = document.getElementById("newItem").value;
+
+            document.getElementById("itemList").appendChild(newLi);
+            document.getElementById("newItem").value = ""
+        }
+        // -----------
+
+
+        function buttonClicked(){
+            var name = document.getElementById("name").value;
+            var age = document.getElementById("age").value;
+            // alert("Hello " + name + " " + age +" years old");
+            document.getElementById("message").innerHTML = name + " " + age + " years old"
+        }
+
+        function sayHello(){
+            alert("Hello!")
+        }
+        function activateButton(){
+            // var enable = "Enable"
+            // var disable = "disable"
+
+            if(!document.getElementById("firstButton").disabled){
+                document.getElementById("firstButton").disabled = true;
+                document.getElementById("secondButton").innerHTML = "Activate Button";
+            }
+            else{
+                document.getElementById("firstButton").removeAttribute("disabled");
+                document.getElementById("secondButton").innerHTML = "Deactivate Button"
+            }
+        }
+    </script>
+</body>
+</html>
